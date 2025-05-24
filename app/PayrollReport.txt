@@ -1,0 +1,5 @@
+Employee: Garcia Manuel III
+Gross Pay: 4750.0
+Deductions: 475.0
+Net Pay: 4275.0
+Attendance: 7 days
