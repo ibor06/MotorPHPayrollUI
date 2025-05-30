@@ -1,2 +1,2 @@
-ID,Name,Birthday,Position,DailyRate,Department,Status
-10001,Manuel III Garcia,10/11/1983,Chief Executive Officer,4285.68,N/A,Regular
+ID,Firstname,Lastname,Birthday,Position,HourlyRate,Status
+10001,Manuel III,Garcia,10/11/1983,Chief Executive Officer,535.71,Regular

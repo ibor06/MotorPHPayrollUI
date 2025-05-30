@@ -13,6 +13,7 @@ import java.util.Date;
 public class PayrollRecord {
     
     private Employee employee;
+    private double dailyRate = employee.getHourlyRate()*8;
     private int daysWorked;
     private int overtimeHours;
     private double grossPay;
@@ -31,16 +32,14 @@ public class PayrollRecord {
     }
 
     public void calculateGrossPay() {
-        grossPay = (employee.getDailyRate() * daysWorked) + (overtimeHours * (employee.getDailyRate() / 8));
+        grossPay = (dailyRate * daysWorked);
     }
 
     public void calculateDeductions(GovernmentDeduction deduction) {
         deductions = deduction.totalDeductions(grossPay);
     }
 
-    public void calculateNetPay() {
-        netPay = grossPay - deductions;
-    }
+    public void calculateNetPay() { netPay = grossPay - deductions;}
 
     
     public Employee getEmployee() { return employee; }

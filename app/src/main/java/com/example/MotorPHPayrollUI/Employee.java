@@ -4,43 +4,72 @@
  */
 package com.example.MotorPHPayrollUI;
 
+
+import java.util.*;
+import java.io.*;
 /**
  *
  * @author rovie
  */
 public class Employee {
+    private static ArrayList<Employee> employees = new ArrayList<>();
+    
     private int id;
-    private String name;
+    private String firstname, lastname;
     private String birthday;
     private String position;
-    private double dailyRate;
-    private String department;
+    private double hourlyRate;
+    
     private String status;
 
-    public Employee(int id, String name, String birthday, String position, double dailyRate, String department, String status) {
+    public Employee(int id, String firstname, String lastname, String birthday, String position, double hourlyRate, String status) {
         this.id = id;
-        this.name = name;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.birthday = birthday;
         this.position = position;
-        this.dailyRate = dailyRate;
-        this.department = department;
+        this.hourlyRate = hourlyRate;
         this.status = status;
     }
 
     public int getId() { return id; }
-    public String getName() { return name; }
+    public String getFirstname() { return firstname; }
+    public String getLastname() { return lastname; }
     public String getBirthday() { return birthday; }
     public String getPosition() { return position; }
-    public double getDailyRate() { return dailyRate; }
-    public String getDepartment() { return department; }
+    public double getHourlyRate() { return hourlyRate; }
     public String getStatus() { return status; }
 
     public void setId(int id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
+    public void setFirstname(String firstname) { this.firstname = firstname; }
+    public void setLastname(String lastname) { this.lastname = lastname; }
     public void setBirthday(String birthday) { this.birthday = birthday; }
     public void setPosition(String position) { this.position = position; }
-    public void setDailyRate(double dailyRate) { this.dailyRate = dailyRate; }
-    public void setDepartment(String department) { this.department = department; }
+    public void setHourlyRate(double hourlyRate) { this.hourlyRate = hourlyRate; }
     public void setStatus(String status) { this.status = status; }
+    
+    public void addEmployee(Employee emp) {
+        employees.add(emp);  
+        saveEmployeesToCSV();
+    }
+    
+     public void saveEmployeesToCSV() {
+        try (PrintWriter writer = new PrintWriter(new File("employees.csv"))) {
+            writer.println("ID,Firstname,Lastname,Birthday,Position,HourlyRate,Status");
+            for (Employee e : employees) {
+                writer.printf("%d,%s,%s,%s,%s,%.2f,%s%n",
+                        e.getId(), e.getFirstname(),e.getLastname(), 
+                        e.getBirthday(), e.getPosition(), e.getHourlyRate(), 
+                        e.getStatus());
+            }
+            System.out.println("\n**********************************************");
+            System.out.println("Data saved to employees.csv");
+        } catch (FileNotFoundException e) {
+            System.out.println("\n**********************************************");
+            System.out.println("Error saving to CSV: " + e.getMessage());
+        }
+    }
 }
+
+
 
