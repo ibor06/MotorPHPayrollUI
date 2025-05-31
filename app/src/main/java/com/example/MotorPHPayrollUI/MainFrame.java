@@ -4,9 +4,6 @@
  */
 package com.example.MotorPHPayrollUI;
 
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -39,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Motor PH Payroll System");
-        setPreferredSize(new java.awt.Dimension(450, 500));
+
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -62,25 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         editEmployeeBtn.setText("Edit Employees");
-        editEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editEmployeeBtnActionPerformed(evt);
-            }
-        });
 
-        deleteEmployeeBtn.setText("Delete Employee");
-        deleteEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteEmployeeBtnActionPerformed(evt);
-            }
-        });
-
-        calculateSalaryBtn.setText("Calculate Salary");
-        calculateSalaryBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calculateSalaryBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,12 +100,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeBtnActionPerformed
-       
-       String csvContent = Employee.readCsvAsText("employees.csv");
-        JTextArea textArea = new JTextArea(csvContent, 20, 40);
-        textArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-      JOptionPane.showMessageDialog(this, scrollPane, "CSV Contents", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_viewEmployeeBtnActionPerformed
 
     private void addEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeBtnActionPerformed
@@ -136,21 +110,6 @@ public class MainFrame extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_addEmployeeBtnActionPerformed
 
-    private void editEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmployeeBtnActionPerformed
-        
-        EditEmployee editEmployee = new EditEmployee();
-        editEmployee.setVisible(true);
-        this.dispose();
-        
-    }//GEN-LAST:event_editEmployeeBtnActionPerformed
-
-    private void deleteEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteEmployeeBtnActionPerformed
-
-    private void calculateSalaryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateSalaryBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calculateSalaryBtnActionPerformed
 
     /**
      * @param args the command line arguments
