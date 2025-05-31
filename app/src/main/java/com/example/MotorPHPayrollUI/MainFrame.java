@@ -4,6 +4,7 @@
  */
 package com.example.MotorPHPayrollUI;
 
+
 /**
  *
  * @author rovie
@@ -35,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Motor PH Payroll System");
-        setPreferredSize(new java.awt.Dimension(420, 420));
+
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -59,9 +60,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         editEmployeeBtn.setText("Edit Employees");
 
-        deleteEmployeeBtn.setText("Delete Employee");
-
-        calculateSalaryBtn.setText("Calculate Salary");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +100,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeBtnActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_viewEmployeeBtnActionPerformed
 
     private void addEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeBtnActionPerformed
@@ -111,6 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
        addEmployee.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_addEmployeeBtnActionPerformed
+
 
     /**
      * @param args the command line arguments

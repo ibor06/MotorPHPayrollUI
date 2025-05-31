@@ -12,8 +12,7 @@ import java.io.*;
  * @author rovie
  */
 public class Employee {
-    private static ArrayList<Employee> employees = new ArrayList<>();
-    
+
     private int id;
     private String firstname, lastname;
     private String birthday;
@@ -48,27 +47,13 @@ public class Employee {
     public void setHourlyRate(double hourlyRate) { this.hourlyRate = hourlyRate; }
     public void setStatus(String status) { this.status = status; }
     
+
     public void addEmployee(Employee emp) {
         employees.add(emp);  
         saveEmployeesToCSV();
     }
     
-     public void saveEmployeesToCSV() {
-        try (PrintWriter writer = new PrintWriter(new File("employees.csv"))) {
-            writer.println("ID,Firstname,Lastname,Birthday,Position,HourlyRate,Status");
-            for (Employee e : employees) {
-                writer.printf("%d,%s,%s,%s,%s,%.2f,%s%n",
-                        e.getId(), e.getFirstname(),e.getLastname(), 
-                        e.getBirthday(), e.getPosition(), e.getHourlyRate(), 
-                        e.getStatus());
-            }
-            System.out.println("\n**********************************************");
-            System.out.println("Data saved to employees.csv");
-        } catch (FileNotFoundException e) {
-            System.out.println("\n**********************************************");
-            System.out.println("Error saving to CSV: " + e.getMessage());
-        }
-    }
+
 }
 
 
