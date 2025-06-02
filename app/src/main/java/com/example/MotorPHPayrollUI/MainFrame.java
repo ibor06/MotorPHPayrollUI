@@ -39,6 +39,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Motor PH Payroll System");
+        setLocation(new java.awt.Point(0, 0));
+        setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(450, 500));
         setResizable(false);
 
@@ -153,7 +155,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteEmployeeBtnActionPerformed
 
     private void calculateSalaryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateSalaryBtnActionPerformed
-        // TODO add your handling code here:
+
+        CalculateSalary calculateSalary = new CalculateSalary();
+       calculateSalary.setVisible(true);
+       this.dispose();
+
     }//GEN-LAST:event_calculateSalaryBtnActionPerformed
 
     /**

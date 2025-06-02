@@ -79,13 +79,13 @@ public class Employee {
 }
     
     public Employee() {
-    if (Employee.employees == null) { // ✅ Prevents null list issue
+    if (Employee.employees == null) { // Prevents null list issue
         Employee.employees = new ArrayList<>();
     }
     loadEmployeesFromFile();
 }
     
-     private void loadEmployeesFromFile() {
+     public void loadEmployeesFromFile() {
     employees.clear();
     File file = new File(FILE_NAME);
     if (!file.exists()) return;
@@ -138,7 +138,7 @@ public class Employee {
             }
 
         } catch (IOException e) {
-            builder.append("Error reading file: ").append(e.getMessage());
+           
         }
 
         return builder.toString();
@@ -174,6 +174,10 @@ public class Employee {
             }
         }
        
+    }
+    
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
    

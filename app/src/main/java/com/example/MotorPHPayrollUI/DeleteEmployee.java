@@ -4,7 +4,9 @@
  */
 package com.example.MotorPHPayrollUI;
 
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +19,12 @@ public class DeleteEmployee extends javax.swing.JFrame {
      */
     public DeleteEmployee() {
         initComponents();
+        
+        
     }
 
+    
+           
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +44,8 @@ public class DeleteEmployee extends javax.swing.JFrame {
         idTxt = new javax.swing.JTextField();
         deleteBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +113,24 @@ public class DeleteEmployee extends javax.swing.JFrame {
             }
         });
 
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Birthday", "Position", "Hourly Rate", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,29 +138,34 @@ public class DeleteEmployee extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(64, 64, 64)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(282, 282, 282)
                         .addComponent(deleteBtn)
-                        .addGap(74, 74, 74)
+                        .addGap(139, 139, 139)
                         .addComponent(backBtn)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteBtn)
                     .addComponent(backBtn))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,7 +173,7 @@ public class DeleteEmployee extends javax.swing.JFrame {
 
     private void idTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTxtActionPerformed
         
-      
+      addRowToTable();
         
     }//GEN-LAST:event_idTxtActionPerformed
 
@@ -179,6 +210,38 @@ public class DeleteEmployee extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backBtnActionPerformed
 
+    public void addRowToTable(){
+        
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+         Employee employee = new Employee();
+         
+         
+         
+         Object[] rowData = new Object[5];
+         int id = Integer.parseInt(idTxt.getText()); 
+         
+         try{
+        for (Employee e : employee.getEmployees()) {
+            if(e.getId() == id){
+                rowData[0] = e.getFirstname() + " " + e.getLastname();
+                rowData[1] = e.getBirthday();
+                rowData[2] = e.getPosition();
+                rowData[3] = e.getHourlyRate();
+                rowData[4] = e.getStatus();
+                model.addRow(rowData);
+            }
+            else{
+                String message = "Employee Not Found!";
+                JOptionPane.showMessageDialog(this, message);
+                }
+            }
+         
+            }
+            catch(HeadlessException e){
+            }   
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -216,6 +279,8 @@ public class DeleteEmployee extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
