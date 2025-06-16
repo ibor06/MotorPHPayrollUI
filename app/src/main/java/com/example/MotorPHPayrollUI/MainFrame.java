@@ -59,6 +59,11 @@ public final class MainFrame extends javax.swing.JFrame {
                 String line = fileScanner.nextLine();
                 String[] data = line.split(",");
 
+                 if (data.length < 11) {
+                 System.out.println("Skipping invalid line: " + line);
+             continue;
+    }
+
                 int id = Integer.parseInt(data[0].trim());
                 String firstname = data[1];
                 String lastname = data[2];
