@@ -22,8 +22,12 @@ public class Employee {
     private String position;
     private double hourlyRate;
     private String status;
+    private String sssNum, phNum, tinNum, piNum;
+    
 
-    public Employee(int id, String firstname, String lastname, String birthday, String position, double hourlyRate, String status) {
+    public Employee(int id, String firstname, String lastname, String birthday, 
+            String position, double hourlyRate, String status, String sssNum, 
+            String phNum, String tinNum, String piNum) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -31,6 +35,10 @@ public class Employee {
         this.position = position;
         this.hourlyRate = hourlyRate;
         this.status = status;
+        this.sssNum = sssNum;
+        this.phNum = phNum;
+        this.tinNum = tinNum;
+        this.piNum = piNum;
     }
 
    
@@ -41,6 +49,10 @@ public class Employee {
     public String getPosition() { return position; }
     public double getHourlyRate() { return hourlyRate; }
     public String getStatus() { return status; }
+    public String getSssNum() { return sssNum; }
+    public String getPhNum() { return phNum; }
+    public String getTinNum() { return tinNum; }
+    public String getPiNum() { return piNum; }
 
     public void setId(int id) { this.id = id; }
     public void setFirstname(String firstname) { this.firstname = firstname; }
@@ -49,16 +61,22 @@ public class Employee {
     public void setPosition(String position) { this.position = position; }
     public void setHourlyRate(double hourlyRate) { this.hourlyRate = hourlyRate; }
     public void setStatus(String status) { this.status = status; }
+    public void setSssNum(String sssNum) { this.sssNum = sssNum; }
+    public void setPhNum(String phNum) { this.phNum = phNum; }
+    public void setTinNum(String tinNum) { this.tinNum = tinNum; }
+    public void setPiNum(String piNum) { this.piNum = piNum; }
     
     public String toFileString() {
-        return id + "," + firstname + "," + lastname + "," + birthday + "," + position + "," + hourlyRate + "," + status;
+        return  id + "," +  firstname + "," + lastname + "," + birthday + "," + 
+                position + "," + hourlyRate + "," + status + "," + sssNum + "," + 
+                phNum + "," + tinNum + "," + piNum;
     }
     public static Employee fromFileString(String line) {
     String[] parts = line.split(",");
     
-    // Check if the line contains exactly 4 parts (ID, Name, Position, Salary)
-    if (parts.length != 7) {
-        System.out.println("Skipping invalid employee record: " + line);
+  
+    if (parts.length != 11) {
+        
         return null; // Return null if the data format is incorrect
     }
 
@@ -70,7 +88,12 @@ public class Employee {
         String position = parts[4];
         double hourlyRate = Double.parseDouble(parts[5]);
         String status = parts[6];
-        return new Employee(id, firstName, lastName, birthday, position, hourlyRate, status);
+        String sssNum = parts[7];
+        String phNum = parts[8];
+        String tinNum = parts[9];
+        String piNum = parts[10];
+        return new Employee(id, firstName, lastName, birthday, position, 
+                hourlyRate, status, sssNum, phNum, tinNum, piNum);
     } catch (NumberFormatException e) {
         System.out.println("Error parsing employee record: " + line);
         return null;
@@ -146,7 +169,9 @@ public class Employee {
     
     public static void editEmployee(int id, String newFirstname, String newLastname,
                                     String newBirthday,String newPosition,
-                                    double newHourlyRate, String newStatus){
+                                    double newHourlyRate, String newStatus,
+                                    String newSssNum, String newPhNum, String newTinNum,
+                                    String newPiNum){
         for (Employee e : employees){
             if (e.getId()== id) {
                 e.setFirstname(newFirstname);
@@ -155,6 +180,10 @@ public class Employee {
                 e.setPosition(newPosition);
                 e.setHourlyRate(newHourlyRate);
                 e.setStatus(newStatus);
+                e.setSssNum(newSssNum);
+                e.setPhNum(newPhNum);
+                e.setTinNum(newTinNum);
+                e.setPiNum(newPiNum);
                 saveEmployeesToCSV();
                 return;
             }

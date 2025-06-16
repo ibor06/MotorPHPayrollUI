@@ -204,8 +204,8 @@ public class DeleteEmployee extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
-        MainFrame mainFrame = new MainFrame();
-                mainFrame.setVisible(true);
+        Frame frame = new Frame();
+                frame.setVisible(true);
                 this.dispose();
         
     }//GEN-LAST:event_backBtnActionPerformed
@@ -230,10 +230,10 @@ public class DeleteEmployee extends javax.swing.JFrame {
                 rowData[4] = e.getStatus();
                 model.addRow(rowData);
             }
-            else{
+            
                 String message = "Employee Not Found!";
                 JOptionPane.showMessageDialog(this, message);
-                }
+                
             }
          
             }

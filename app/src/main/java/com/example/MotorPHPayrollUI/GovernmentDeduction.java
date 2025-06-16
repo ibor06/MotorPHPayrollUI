@@ -10,9 +10,25 @@ import static java.lang.Math.round;
  *
  * @author rovie
  */
+
+
+
+
+
 public class GovernmentDeduction {
+    
+    private double sssDeduction;
+    private double phDeduction;
+    private double piDeduction;
+    private double taxDeduction;
+    
+    public double getSssDeduction(){ return sssDeduction; }
+    public double getPhDeduction(){ return phDeduction; }
+    public double getPiDeduction(){ return piDeduction; }
+    public double getTaxDeduction(){ return taxDeduction; }
+    
     public double calculateSSS(double grossPay){
-    double sssDeduction = 0.0; // Initialize sssDeduction
+     // Initialize sssDeduction
 
     if (grossPay <= 3250) {
         sssDeduction = 135.00;
@@ -109,14 +125,16 @@ public class GovernmentDeduction {
     return round(sssDeduction); // Return the rounded SSS deduction
 }
 
-    public double calculatePhilHealth(double grossPay) { return grossPay * 0.03 * 0.5; }
+    public double calculatePhilHealth(double grossPay) {
+        
+        return phDeduction = grossPay * 0.03 * 0.5; }
     
     public double calculatePagIbig(double grossPay) { 
         double pagibig = grossPay * 0.02;
-        if(pagibig >= 100){
-        return 100;
+        if(pagibig <= 100){
+        return piDeduction = pagibig;
         }
-        return pagibig;
+        return piDeduction = 100;
     }
     public double calculateWithholdingTax(double grossPay) {
     double tax;
@@ -133,7 +151,7 @@ public class GovernmentDeduction {
     tax = ((grossPay - 166667) * 0.32) + 40833.33;
 }
 
-    return tax;
+    return taxDeduction = tax;
 }
     public double totalDeductions(double grossPay) {
         return calculateSSS(grossPay) + calculatePhilHealth(grossPay) + calculatePagIbig(grossPay)+ calculateWithholdingTax(grossPay);
