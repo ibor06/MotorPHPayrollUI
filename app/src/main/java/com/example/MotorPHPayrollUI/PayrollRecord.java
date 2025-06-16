@@ -29,17 +29,7 @@ public class PayrollRecord {
         this.endDate = endDate;
     }
 
-    public void calculateGrossPay() {
-        dailyRate = employee.getHourlyRate()*8;
-        grossPay = (dailyRate  * daysWorked);
-    }
-
-    public void calculateDeductions(GovernmentDeduction deduction) {
-        deductions = deduction.totalDeductions(grossPay);
-    }
-
-    public void calculateNetPay() { netPay = grossPay - deductions;}
-
+    
     
     public Employee getEmployee() { return employee; }
     public int getDaysWorked() { return daysWorked; }
@@ -54,4 +44,16 @@ public class PayrollRecord {
     public void setDaysWorked(int daysWorked) { this.daysWorked = daysWorked; }
     public void setStartDate(Date startDate) { this.startDate = startDate; }
     public void setEndDate(Date endDate) { this.endDate = endDate; }
+    
+    public void calculateGrossPay() {
+        dailyRate = employee.getHourlyRate()*8;
+        grossPay = (dailyRate  * daysWorked);
+    }
+
+    public void calculateDeductions(GovernmentDeduction deduction) {
+        deductions = deduction.totalDeductions(grossPay);
+    }
+
+    public void calculateNetPay() { netPay = grossPay - deductions;}
+
 }

@@ -102,9 +102,9 @@ public class CalculateSalary extends javax.swing.JFrame {
 
         jLabel2.setText("Enter Days Worked:");
 
-        jLabel3.setText("Enter Start Date:");
+        jLabel3.setText("Enter Start Date (YYYY-MM-DD):");
 
-        jLabel4.setText("Enter End Date:");
+        jLabel4.setText("Enter End Date (YYYY-MM-DD):");
 
         calculateBtn.setText("CACULATE SALARY");
         calculateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -154,8 +154,8 @@ public class CalculateSalary extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(daysworkedTxt)
@@ -260,8 +260,8 @@ public class CalculateSalary extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setVisible(true);
+        Frame frame = new Frame();
+        frame.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_backBtnActionPerformed
