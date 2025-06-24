@@ -15,9 +15,39 @@ public class EditEmployee extends javax.swing.JFrame {
     /**
      * Creates new form EditEmployee
      */
+    
+    private MainFrame mainFrame;
+    private int id;
+    
+public EditEmployee(MainFrame mainFrame, int id) {
+    this.mainFrame = mainFrame;
+    this.id = id;
+    initComponents();
+    loadEmployeeData();
+}
     public EditEmployee() {
         initComponents();
+        
     }
+    
+    private void loadEmployeeData() {
+        Employee employee = new Employee();
+    for (Employee e : employee.getEmployees()) {
+        if (e.getId() == id) {
+            firstnameTxt.setText(e.getFirstname());
+            lastnameTxt.setText(e.getLastname());
+            birthdayTxt.setText(e.getBirthday());
+            positionTxt.setText(e.getPosition());
+            hourlyrateTxt.setText(String.valueOf(e.getHourlyRate()));
+            statusTxt.setText(e.getStatus());
+            sssNumTxt.setText(e.getSssNum());
+            phNumTxt.setText(e.getPhNum());
+            tinNumTxt.setText(e.getTinNum());
+            piNumTxt.setText(e.getPiNum());
+            break;
+        }
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,8 +58,6 @@ public class EditEmployee extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        idTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         firstnameTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -56,14 +84,6 @@ public class EditEmployee extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Employee ");
         setPreferredSize(new java.awt.Dimension(450, 500));
-
-        jLabel1.setText("Enter Employee ID to Edit:");
-
-        idTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idTxtActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("New Firstname:");
 
@@ -122,59 +142,50 @@ public class EditEmployee extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel11)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel8)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel4)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(1, 1, 1)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jLabel3))))
-                                    .addGap(44, 44, 44)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(positionTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(firstnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(lastnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(birthdayTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(hourlyrateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(statusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(sssNumTxt)
-                                        .addComponent(phNumTxt)
-                                        .addComponent(tinNumTxt)
-                                        .addComponent(piNumTxt)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(70, 70, 70)
-                                    .addComponent(backBtn)))))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3))))
+                                .addGap(44, 44, 44)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(backBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(positionTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(firstnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(lastnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(birthdayTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(hourlyrateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(statusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(sssNumTxt)
+                                    .addComponent(phNumTxt)
+                                    .addComponent(tinNumTxt)
+                                    .addComponent(piNumTxt))))))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -214,7 +225,7 @@ public class EditEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(piNumTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -229,35 +240,45 @@ public class EditEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_positionTxtActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-       
-        try{
-       int id = Integer.parseInt(idTxt.getText());
-       String firstname = firstnameTxt.getText();
-       String lastname = lastnameTxt.getText();
-       String birthday = birthdayTxt.getText();
-       String position = positionTxt.getText();
-       double hourlyRate = Double.parseDouble(hourlyrateTxt.getText());
-       String status = statusTxt.getText();
-       String sssNum = sssNumTxt.getText();
-       String phNum = phNumTxt.getText();
-       String tinNum = tinNumTxt.getText();
-       String piNum = piNumTxt.getText();
-       
+      String firstname = firstnameTxt.getText().trim();
+    String lastname = lastnameTxt.getText().trim();
+    String birthday = birthdayTxt.getText().trim();
+    String position = positionTxt.getText().trim();
+    String hourlyRateStr = hourlyrateTxt.getText().trim();
+    String status = statusTxt.getText().trim();
+    String sssNum = sssNumTxt.getText().trim();
+    String phNum = phNumTxt.getText().trim();
+    String tinNum = tinNumTxt.getText().trim();
+    String piNum = piNumTxt.getText().trim();
+
+    // Check for empty fields
+    if (firstname.isEmpty() || lastname.isEmpty() || birthday.isEmpty() || position.isEmpty()
+            || hourlyRateStr.isEmpty() || status.isEmpty() || sssNum.isEmpty()
+            || phNum.isEmpty() || tinNum.isEmpty() || piNum.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields before saving.", "Missing Information", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    try {
+        double hourlyRate = Double.parseDouble(hourlyRateStr);
+
+        // Update employee
         Employee.editEmployee(id, firstname, lastname, birthday, position, 
                 hourlyRate, status, sssNum, phNum, tinNum, piNum);
+
+        JOptionPane.showMessageDialog(this, "Employee Info Has Been Updated!");
+
+        mainFrame.refreshTable();
        
-       String message = "Employee Info Has Been Updated!";
-       JOptionPane.showMessageDialog(this, message);
-      }
-      catch(NumberFormatException e){
-          
-      }
+       
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Hourly rate must be a valid number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+    }
+        
+        
         
     }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void idTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idTxtActionPerformed
 
     private void firstnameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameTxtActionPerformed
         // TODO add your handling code here:
@@ -315,8 +336,6 @@ public class EditEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField birthdayTxt;
     private javax.swing.JTextField firstnameTxt;
     private javax.swing.JTextField hourlyrateTxt;
-    private javax.swing.JTextField idTxt;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

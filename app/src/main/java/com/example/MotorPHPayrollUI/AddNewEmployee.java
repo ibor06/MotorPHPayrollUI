@@ -287,7 +287,7 @@ public class AddNewEmployee extends javax.swing.JFrame {
     private void saveEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEmployeeBtnActionPerformed
      Employee emp = new Employee();
      emp.getEmployees();
-      try{
+          try{
        int id = Integer.parseInt(idTxt.getText());
        String firstname = firstnameTxt.getText();
        String lastname = lastnameTxt.getText();
@@ -300,21 +300,25 @@ public class AddNewEmployee extends javax.swing.JFrame {
        String tinNum = tinNumTxt.getText();
        String piNum = piNumTxt.getText();
        
+       
         Employee employee = new Employee(id, firstname, lastname, birthday,
                 position, hourlyRate, status, sssNum, phNum, tinNum, piNum);
        employee.addEmployee(employee);
        
        String message = "New Employee Added!";
        JOptionPane.showMessageDialog(this, message);
-      }
-      catch(NumberFormatException e){
-          
-      }
       
+          
        MainFrame mainFrame = new MainFrame();
        mainFrame.setVisible(true);
        this.dispose();
-      
+
+       } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Please enter valid numbers for ID and Hourly Rate.");
+       } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
+    
+    }     
     }//GEN-LAST:event_saveEmployeeBtnActionPerformed
 
     private void statusTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusTxtActionPerformed
