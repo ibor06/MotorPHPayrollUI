@@ -133,7 +133,7 @@ public class Employee {
     
      public static void saveEmployeesToCSV() {
         if (employees == null) {
-        employees = new ArrayList<>(); // ✅ Ensures employees is never null
+        employees = new ArrayList<>(); 
         return;
     }
 

@@ -37,6 +37,7 @@ public final class MainFrame extends javax.swing.JFrame {
         initComponents();
         loadEmployeesFromCSV();
         addRowToTable();
+     
     }
     
     public int getId(){ return id;}
@@ -58,6 +59,11 @@ public final class MainFrame extends javax.swing.JFrame {
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
                 String[] data = line.split(",");
+                
+                if (data.length < 11) {
+                 System.out.println("Skipping invalid line: " + line);
+                 continue;
+                }
 
                  if (data.length < 11) {
                  System.out.println("Skipping invalid line: " + line);
@@ -118,7 +124,21 @@ public final class MainFrame extends javax.swing.JFrame {
             catch(HeadlessException e){
             }   
     }
+    
+    public void refreshTable() {
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // Clear existing rows
 
+    for (Employee e : employees) {
+        model.addRow(new Object[]{
+            e.getId(), e.getLastname(), e.getFirstname(),
+            e.getSssNum(), e.getPhNum(), e.getTinNum(), e.getPiNum()
+                
+        });
+    }
+}
+    
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,6 +152,8 @@ public final class MainFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         viewEmployeeBtn = new javax.swing.JButton();
         addEmployeeBtn = new javax.swing.JButton();
+        editEmployeeBtn = new javax.swing.JButton();
+        deleteEmployeeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MainFrame");
@@ -169,6 +191,20 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        editEmployeeBtn.setText("Edit Employee");
+        editEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editEmployeeBtnActionPerformed(evt);
+            }
+        });
+
+        deleteEmployeeBtn.setText("Delete Employee");
+        deleteEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteEmployeeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,6 +218,10 @@ public final class MainFrame extends javax.swing.JFrame {
                 .addComponent(viewEmployeeBtn)
                 .addGap(18, 18, 18)
                 .addComponent(addEmployeeBtn)
+                .addGap(18, 18, 18)
+                .addComponent(editEmployeeBtn)
+                .addGap(18, 18, 18)
+                .addComponent(deleteEmployeeBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,7 +232,9 @@ public final class MainFrame extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewEmployeeBtn)
-                    .addComponent(addEmployeeBtn))
+                    .addComponent(addEmployeeBtn)
+                    .addComponent(editEmployeeBtn)
+                    .addComponent(deleteEmployeeBtn))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
@@ -209,6 +251,7 @@ public final class MainFrame extends javax.swing.JFrame {
             EmployeeDetails employeeDetails = new EmployeeDetails(id);
             this.setId(id);
             employeeDetails.setVisible(true);
+            this.setVisible(false);
             
         }
         else {
@@ -221,9 +264,42 @@ public final class MainFrame extends javax.swing.JFrame {
         
        AddNewEmployee addEmployee = new AddNewEmployee();
        addEmployee.setVisible(true);
-       this.dispose();
+       this.setVisible(false);
         
     }//GEN-LAST:event_addEmployeeBtnActionPerformed
+
+    private void editEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmployeeBtnActionPerformed
+   
+        
+         if(jTable1.getSelectedRow() != -1){
+             id = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+             EditEmployee editEmployee = new EditEmployee(this, id);
+             editEmployee.setVisible(true);
+             this.setVisible(false);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Please select an employee.");
+        }   
+    }//GEN-LAST:event_editEmployeeBtnActionPerformed
+
+    private void deleteEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeBtnActionPerformed
+       
+        if(jTable1.getSelectedRow() != -1){
+             id = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+             Employee employee = new Employee();
+             employee.deleteEmployee(id);
+             String message = "Employee Info Has Been Deleted!";
+             JOptionPane.showMessageDialog(this, message);
+             this.dispose();
+             this.refreshTable();
+             this.setVisible(true);
+             
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Please select an employee.");
+        }   
+        
+    }//GEN-LAST:event_deleteEmployeeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,15 +332,15 @@ public final class MainFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MainFrame().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEmployeeBtn;
+    private javax.swing.JButton deleteEmployeeBtn;
+    private javax.swing.JButton editEmployeeBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton viewEmployeeBtn;
