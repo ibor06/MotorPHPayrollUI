@@ -65,11 +65,6 @@ public final class MainFrame extends javax.swing.JFrame {
                  continue;
                 }
 
-                 if (data.length < 11) {
-                 System.out.println("Skipping invalid line: " + line);
-             continue;
-    }
-
                 int id = Integer.parseInt(data[0].trim());
                 String firstname = data[1];
                 String lastname = data[2];
@@ -290,10 +285,10 @@ public final class MainFrame extends javax.swing.JFrame {
              employee.deleteEmployee(id);
              String message = "Employee Info Has Been Deleted!";
              JOptionPane.showMessageDialog(this, message);
-             this.dispose();
              this.refreshTable();
              this.setVisible(true);
              
+            
         }
         else {
             JOptionPane.showMessageDialog(this, "Please select an employee.");
