@@ -121,6 +121,7 @@ public final class MainFrame extends javax.swing.JFrame {
     }
     
     public void refreshTable() {
+        loadEmployeesFromCSV();
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); // Clear existing rows
 
