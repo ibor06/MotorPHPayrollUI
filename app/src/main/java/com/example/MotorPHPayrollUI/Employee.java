@@ -4,7 +4,9 @@
  */
 package com.example.MotorPHPayrollUI;
 
-
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 import java.util.*;
 import java.io.*;
 /**
@@ -113,16 +115,30 @@ public class Employee {
     File file = new File(FILE_NAME);
     if (!file.exists()) return;
 
-    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-        String line;
-        while ((line = br.readLine()) != null) {
-            Employee emp = Employee.fromFileString(line);
-            if (emp != null) { // ✅ Only add valid employees
+    try (CSVReader reader = new CSVReader (new FileReader(file))) {
+        String [] data;
+        while ((data = reader.readNext()) != null) {
+            if (data.length < 11 || data[0].equalsIgnoreCase("id")) continue;
+
+            id = Integer.parseInt(data[0].trim());
+            firstname = data[1];
+            lastname = data[2];
+            birthday = data[3];
+            position = data[4];
+            hourlyRate = Double.parseDouble(data[5].trim());
+            status = data[6];
+            sssNum = data[7];
+            phNum = data[8];
+            tinNum = data[9];
+            piNum = data[10];
+
+            Employee emp = new Employee(id, firstname, lastname, birthday, position,
+                                        hourlyRate, status, sssNum, phNum, tinNum, piNum);
                 employees.add(emp);
-            }
+            
         }
-    } catch (IOException e) {
-        System.out.println("Error loading employees: " + e.getMessage());
+    } catch (Exception e) {
+        System.out.println("Error reading CSV: " + e.getMessage());
     }
 }
     
@@ -131,41 +147,59 @@ public class Employee {
         saveEmployeesToCSV();
     }
     
-     public static void saveEmployeesToCSV() {
-        if (employees == null) {
-        employees = new ArrayList<>(); 
+    public static void saveEmployeesToCSV() {
+    if (employees == null) {
+        employees = new ArrayList<>();
         return;
     }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
-             for (Employee emp : employees) {
-                  if (emp != null) { // Prevent writing null values
-                      bw.write(emp.toFileString());
-                      bw.newLine();
-                 }
-              }
-          } 
-        catch (IOException e) {
-        
-        }
-    }
-     
-    public static String readCsvAsText(String filePath) {
-        StringBuilder builder = new StringBuilder();
+    try (CSVWriter writer = new CSVWriter(new FileWriter(FILE_NAME))) {
+        // Optionally write header row
+        String[] header = {
+            "ID", "First Name", "Last Name", "Birthday", "Position",
+            "Hourly Rate", "Status", "SSS Number", "PhilHealth Number", "TIN", "Pag-IBIG"
+        };
+        writer.writeNext(header);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                builder.append(line).append("\n");
+        for (Employee emp : employees) {
+            if (emp != null) {
+                String[] data = {
+                    String.valueOf(emp.getId()),
+                    emp.getFirstname(),
+                    emp.getLastname(),
+                    emp.getBirthday(),
+                    emp.getPosition(),
+                    String.valueOf(emp.getHourlyRate()),
+                    emp.getStatus(),
+                    emp.getSssNum(),
+                    emp.getPhNum(),
+                    emp.getTinNum(),
+                    emp.getPiNum()
+                };
+                writer.writeNext(data);
             }
+        }
+    } catch (IOException e) {
+        System.out.println("Error saving CSV: " + e.getMessage());
+    }
+}
+     
+    public static String readCsvAsText(String filePath){
+    StringBuilder builder = new StringBuilder();
 
-        } catch (IOException e) {
-           
+    try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+        List<String[]> allRows = reader.readAll();
+
+        for (String[] row : allRows) {
+            builder.append(String.join(", ", row)).append("\n");
         }
 
-        return builder.toString();
+    } catch (IOException | CsvException e) {
+        System.out.println("Error reading CSV: " + e.getMessage());
     }
+
+    return builder.toString();
+}
     
     public static void editEmployee(int id, String newFirstname, String newLastname,
                                     String newBirthday,String newPosition,

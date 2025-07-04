@@ -5,13 +5,14 @@
 package com.example.MotorPHPayrollUI;
 
 
+import com.opencsv.CSVReader;
 import java.awt.HeadlessException;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
@@ -46,47 +47,47 @@ public final class MainFrame extends javax.swing.JFrame {
     
     private static final List<Employee> employees = new ArrayList<>();
     
-    public static void loadEmployeesFromCSV() {
-        File file = new File("employees.csv");
-        if (!file.exists()) {
-            return;
-        }
-        
-        employees.clear();
-
-        try (Scanner fileScanner = new Scanner(file)) {
-            
-            while (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine();
-                String[] data = line.split(",");
-                
-                if (data.length < 11) {
-                 System.out.println("Skipping invalid line: " + line);
-                 continue;
-                }
-
-                int id = Integer.parseInt(data[0].trim());
-                String firstname = data[1];
-                String lastname = data[2];
-                String birthday = data[3];
-                String position = data[4];
-                double rate = Double.parseDouble(data[5].trim());
-                String status = data[6];
-                String sssNum = data[7];
-                String phNum = data[8];
-                String tinNum = data[9];
-                String piNum = data[10];
-
-                employees.add(new Employee(id, firstname, lastname, birthday, 
-                        position, rate, status, sssNum, phNum, tinNum, piNum));
-            }
-            
-        } catch (Exception e) {
-            
-            System.out.println("Error reading CSV: " + e.getMessage());
-        }
-        
+   public static void loadEmployeesFromCSV() {
+    File file = new File("employees.csv");
+    if (!file.exists()) {
+        System.out.println("CSV file not found.");
+        return;
     }
+
+    employees.clear(); // Clear old data before loading new data
+
+    try (CSVReader reader = new CSVReader(new FileReader(file))) {
+        List<String[]> records = reader.readAll();
+
+        // Skip header
+        for (int i = 1; i < records.size(); i++) {
+            String[] data = records.get(i);
+
+            if (data.length < 11) {
+                System.out.println("Skipping invalid line: " + String.join(",", data));
+                continue;
+            }
+
+            int id = Integer.parseInt(data[0].trim());
+            String firstname = data[1].trim();
+            String lastname = data[2].trim();
+            String birthday = data[3].trim();
+            String position = data[4].trim();
+            double rate = Double.parseDouble(data[5].trim());
+            String status = data[6].trim();
+            String sssNum = data[7].trim();
+            String phNum = data[8].trim();
+            String tinNum = data[9].trim();
+            String piNum = data[10].trim();
+
+            Employee emp = new Employee(id, firstname, lastname, birthday, position, rate, status, sssNum, phNum, tinNum, piNum);
+            employees.add(emp);
+        }
+
+    } catch (Exception e) {
+        System.out.println("Error reading CSV: " + e.getMessage());
+    }
+}
  
     
     public void addRowToTable(){
@@ -121,7 +122,12 @@ public final class MainFrame extends javax.swing.JFrame {
     }
     
     public void refreshTable() {
+
+        
+    loadEmployeesFromCSV();
+
         loadEmployeesFromCSV();
+
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); // Clear existing rows
 
