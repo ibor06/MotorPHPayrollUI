@@ -154,7 +154,7 @@ public class Employee {
     }
 
     try (CSVWriter writer = new CSVWriter(new FileWriter(FILE_NAME))) {
-        // Optionally write header row
+        
         String[] header = {
             "ID", "First Name", "Last Name", "Birthday", "Position",
             "Hourly Rate", "Status", "SSS Number", "PhilHealth Number", "TIN", "Pag-IBIG"
