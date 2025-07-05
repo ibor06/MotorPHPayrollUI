@@ -30,7 +30,7 @@ public final class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    
+  
     int id;
     
     public MainFrame() {
@@ -122,12 +122,8 @@ public final class MainFrame extends javax.swing.JFrame {
     }
     
     public void refreshTable() {
-
         
     loadEmployeesFromCSV();
-
-        loadEmployeesFromCSV();
-
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); // Clear existing rows
 
@@ -156,6 +152,7 @@ public final class MainFrame extends javax.swing.JFrame {
         addEmployeeBtn = new javax.swing.JButton();
         editEmployeeBtn = new javax.swing.JButton();
         deleteEmployeeBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MainFrame");
@@ -207,6 +204,13 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -224,6 +228,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 .addComponent(editEmployeeBtn)
                 .addGap(18, 18, 18)
                 .addComponent(deleteEmployeeBtn)
+                .addGap(18, 18, 18)
+                .addComponent(logoutBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,7 +242,8 @@ public final class MainFrame extends javax.swing.JFrame {
                     .addComponent(viewEmployeeBtn)
                     .addComponent(addEmployeeBtn)
                     .addComponent(editEmployeeBtn)
-                    .addComponent(deleteEmployeeBtn))
+                    .addComponent(deleteEmployeeBtn)
+                    .addComponent(logoutBtn))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
@@ -303,41 +310,13 @@ public final class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_deleteEmployeeBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         
-    
-      
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
+        this.setVisible(false);
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new MainFrame().setVisible(true);
-        });
-    }
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEmployeeBtn;
@@ -345,6 +324,7 @@ public final class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton editEmployeeBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton viewEmployeeBtn;
     // End of variables declaration//GEN-END:variables
 }
