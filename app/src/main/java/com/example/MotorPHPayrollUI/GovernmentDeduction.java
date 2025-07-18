@@ -127,7 +127,9 @@ public class GovernmentDeduction {
 
     public double calculatePhilHealth(double grossPay) {
         
-        return phDeduction = grossPay * 0.03 * 0.5; }
+         phDeduction = grossPay * 0.03 * 0.5; 
+         return round(phDeduction);
+        }
     
     public double calculatePagIbig(double grossPay) { 
         double pagibig = grossPay * 0.02;
@@ -151,7 +153,8 @@ public class GovernmentDeduction {
     tax = ((grossPay - 166667) * 0.32) + 40833.33;
 }
 
-    return taxDeduction = tax;
+     taxDeduction = tax;
+     return round(taxDeduction);
 }
     public double totalDeductions(double grossPay) {
         return calculateSSS(grossPay) + calculatePhilHealth(grossPay) + calculatePagIbig(grossPay)+ calculateWithholdingTax(grossPay);

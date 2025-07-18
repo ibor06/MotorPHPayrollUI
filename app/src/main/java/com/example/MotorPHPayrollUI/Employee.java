@@ -143,6 +143,7 @@ public class Employee {
 }
     
     public void addEmployee(Employee emp) {
+        
         employees.add(emp);  
         saveEmployeesToCSV();
     }
@@ -238,6 +239,18 @@ public class Employee {
         }
        
     }
+    
+    public static boolean isValidDate(String dateStr) {
+    try {
+        // Enforce strict date parsing using yyyy-MM-dd format
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MM-dd-yyyy");
+        sdf.setLenient(false);
+        sdf.parse(dateStr);  // Throws ParseException if invalid
+        return true;
+    } catch (java.text.ParseException e) {
+        return false;
+    }
+}
     
     public List<Employee> getEmployees() {
         return employees;
