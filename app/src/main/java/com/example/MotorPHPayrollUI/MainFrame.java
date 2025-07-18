@@ -34,7 +34,7 @@ public final class MainFrame extends javax.swing.JFrame {
     int id;
     
     public MainFrame() {
-        
+       
         initComponents();
         loadEmployeesFromCSV();
         addRowToTable();
@@ -145,6 +145,7 @@ public final class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -156,6 +157,7 @@ public final class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MainFrame");
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,12 +178,31 @@ public final class MainFrame extends javax.swing.JFrame {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 872;
+        gridBagConstraints.ipady = 191;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(130, 6, 0, 6);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
+
         viewEmployeeBtn.setText("View Employee Detail");
         viewEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewEmployeeBtnActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(65, 89, 71, 0);
+        getContentPane().add(viewEmployeeBtn, gridBagConstraints);
 
         addEmployeeBtn.setText("Add New Employee");
         addEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +210,12 @@ public final class MainFrame extends javax.swing.JFrame {
                 addEmployeeBtnActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(65, 18, 71, 0);
+        getContentPane().add(addEmployeeBtn, gridBagConstraints);
 
         editEmployeeBtn.setText("Edit Employee");
         editEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +223,12 @@ public final class MainFrame extends javax.swing.JFrame {
                 editEmployeeBtnActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(65, 18, 71, 0);
+        getContentPane().add(editEmployeeBtn, gridBagConstraints);
 
         deleteEmployeeBtn.setText("Delete Employee");
         deleteEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -203,6 +236,12 @@ public final class MainFrame extends javax.swing.JFrame {
                 deleteEmployeeBtnActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(65, 18, 71, 0);
+        getContentPane().add(deleteEmployeeBtn, gridBagConstraints);
 
         logoutBtn.setText("Logout");
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -210,42 +249,12 @@ public final class MainFrame extends javax.swing.JFrame {
                 logoutBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(viewEmployeeBtn)
-                .addGap(18, 18, 18)
-                .addComponent(addEmployeeBtn)
-                .addGap(18, 18, 18)
-                .addComponent(editEmployeeBtn)
-                .addGap(18, 18, 18)
-                .addComponent(deleteEmployeeBtn)
-                .addGap(18, 18, 18)
-                .addComponent(logoutBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewEmployeeBtn)
-                    .addComponent(addEmployeeBtn)
-                    .addComponent(editEmployeeBtn)
-                    .addComponent(deleteEmployeeBtn)
-                    .addComponent(logoutBtn))
-                .addContainerGap(71, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(65, 18, 71, 0);
+        getContentPane().add(logoutBtn, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -294,15 +303,17 @@ public final class MainFrame extends javax.swing.JFrame {
     private void deleteEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeBtnActionPerformed
        
         if(jTable1.getSelectedRow() != -1){
-             id = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-             Employee employee = new Employee();
-             employee.deleteEmployee(id);
-             String message = "Employee Info Has Been Deleted!";
-             JOptionPane.showMessageDialog(this, message);
-             this.refreshTable();
-             this.setVisible(true);
-             
-            
+          int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this Employee? This action cannot be Undone!");
+          
+               if(choice == 0){
+                    id = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                    Employee employee = new Employee();
+                    employee.deleteEmployee(id);
+                    String message = "Employee Info Has Been Deleted!";
+                    JOptionPane.showMessageDialog(this, message);
+                    this.refreshTable();
+                    this.setVisible(true);
+                }
         }
         else {
             JOptionPane.showMessageDialog(this, "Please select an employee.");
